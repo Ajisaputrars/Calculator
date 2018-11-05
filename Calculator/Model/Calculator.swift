@@ -8,6 +8,10 @@
 
 import Foundation
 
+func multiply(d1: Double, d2: Double) -> Double{
+    return d1 * d2
+}
+
 class Calculator{
     
     private var accumulator = 0.0
@@ -18,16 +22,18 @@ class Calculator{
     
     enum Operation {
         case Constant(Double)
-        case UnaryOperation
-        case BinaryOperation
-        case Equal
+        case UnaryOperation((Double) -> Double)
+        case BinaryOperation((Double, Double) ->(Double))
+        case Equals
     }
     
     private var operation: Dictionary<String, Operation> = [
         "𝜋" : Operation.Constant(.pi), // Double.pi,
         "e" : Operation.Constant(M_E), //M_E
-        "√" : Operation.UnaryOperation,
-        "cos" : Operation.UnaryOperation//M_E
+        "√" : Operation.UnaryOperation(sqrt),
+        "cos" : Operation.UnaryOperation(cos),//M_E
+        "x" : Operation.BinaryOperation(multiply),
+        "=" : Operation.Equals
     ]
     
     func performOperation(symbol: String){
@@ -35,14 +41,24 @@ class Calculator{
             switch operation {
             case .Constant (let value) :
                 accumulator = value
-            case .UnaryOperation :
-                break
-            case .BinaryOperation :
-                break
-            case .Equal :
-                break
+            case .UnaryOperation(let function) :
+                accumulator = function(accumulator)
+            case .BinaryOperation(let function) :
+                pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
+            case .Equals :
+                if pending != nil {
+                    accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
+                    pending = nil
+                }
             }
         }
+    }
+    
+    var pending: PendingBinaryOperationInfo?
+    
+    struct PendingBinaryOperationInfo {
+        var binaryFunction: (Double, Double) -> Double
+        var firstOperand: Double
     }
     
     var result: Double {
