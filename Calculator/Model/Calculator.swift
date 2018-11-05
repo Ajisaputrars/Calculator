@@ -16,14 +16,32 @@ class Calculator{
         accumulator = operand
     }
     
-    var operation: Dictionary<String, Double> = [
-        "𝜋" : Double.pi,
-        "e" : M_E
+    enum Operation {
+        case Constant(Double)
+        case UnaryOperation
+        case BinaryOperation
+        case Equal
+    }
+    
+    private var operation: Dictionary<String, Operation> = [
+        "𝜋" : Operation.Constant(.pi), // Double.pi,
+        "e" : Operation.Constant(M_E), //M_E
+        "√" : Operation.UnaryOperation,
+        "cos" : Operation.UnaryOperation//M_E
     ]
     
     func performOperation(symbol: String){
-        if let constant = operation[symbol] {
-            accumulator = constant
+        if let operation = operation[symbol] {
+            switch operation {
+            case .Constant (let value) :
+                accumulator = value
+            case .UnaryOperation :
+                break
+            case .BinaryOperation :
+                break
+            case .Equal :
+                break
+            }
         }
     }
     
