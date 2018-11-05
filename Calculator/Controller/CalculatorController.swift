@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainController: UIViewController {
+class CalculatorController: UIViewController {
     
     private var mainView: CalculatorView! {
         guard isViewLoaded else { return nil }
@@ -40,7 +40,7 @@ class MainController: UIViewController {
     }
 }
 
-extension MainController{
+extension CalculatorController{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
