@@ -16,17 +16,14 @@ class Calculator{
         accumulator = operand
     }
     
+    var operation: Dictionary<String, Double> = [
+        "𝜋" : Double.pi,
+        "e" : M_E
+    ]
+    
     func performOperation(symbol: String){
-        switch symbol {
-        case "𝜋":
-            accumulator = Double.pi
-        case "√":
-            accumulator = sqrt(accumulator)
-        case "e":
-            accumulator = M_E
-        default:
-            print("Break nih")
-            break
+        if let constant = operation[symbol] {
+            accumulator = constant
         }
     }
     
