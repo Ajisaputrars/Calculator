@@ -10,18 +10,38 @@ import UIKit
 
 class MainController: UIViewController {
     
+    private var mainView: CalculatorView! {
+        guard isViewLoaded else { return nil }
+        return view as! CalculatorView
+    }
+    
+    var userIsInTheMiddleOfTyping = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
+    @IBAction func touchDigit(_ sender: UIButton) {
+        let digit = sender.currentTitle!
+        if userIsInTheMiddleOfTyping {
+            mainView.displayLabel.text = mainView.displayLabel.text! + digit
+        } else {
+            mainView.displayLabel.text = digit
+        }
+        userIsInTheMiddleOfTyping = true
+    }
+    @IBAction func performOperation(_ sender: UIButton) {
+        if let sender = sender.currentTitle {
+            if sender == "𝜋" {
+                mainView.displayLabel.text = "\(Double.pi)"
+            }
+        }
+        userIsInTheMiddleOfTyping = false
+    }
+}
+
+extension MainController{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        print("Done")
     }
 }

@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		D7E1CE0D218F0A120034B8E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1CE0C218F0A120034B8E6 /* AppDelegate.swift */; };
-		D7E1CE0F218F0A120034B8E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1CE0E218F0A120034B8E6 /* ViewController.swift */; };
+		D7E1CE0F218F0A120034B8E6 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1CE0E218F0A120034B8E6 /* MainController.swift */; };
 		D7E1CE12218F0A120034B8E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E1CE10218F0A120034B8E6 /* Main.storyboard */; };
 		D7E1CE15218F0A120034B8E6 /* Calculator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D7E1CE13218F0A120034B8E6 /* Calculator.xcdatamodeld */; };
 		D7E1CE17218F0A120034B8E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7E1CE16218F0A120034B8E6 /* Assets.xcassets */; };
 		D7E1CE1A218F0A120034B8E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7E1CE18218F0A120034B8E6 /* LaunchScreen.storyboard */; };
 		D7E1CE25218F0A120034B8E6 /* CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1CE24218F0A120034B8E6 /* CalculatorTests.swift */; };
 		D7E1CE30218F0A120034B8E6 /* CalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1CE2F218F0A120034B8E6 /* CalculatorUITests.swift */; };
+		D7E1CE3E218F2D770034B8E6 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1CE3D218F2D770034B8E6 /* CalculatorView.swift */; };
+		D7E1CE40218F2D9C0034B8E6 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E1CE3F218F2D9C0034B8E6 /* Calculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,7 @@
 /* Begin PBXFileReference section */
 		D7E1CE09218F0A120034B8E6 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E1CE0C218F0A120034B8E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D7E1CE0E218F0A120034B8E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D7E1CE0E218F0A120034B8E6 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		D7E1CE11218F0A120034B8E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D7E1CE14218F0A120034B8E6 /* Calculator2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Calculator2.xcdatamodel; sourceTree = "<group>"; };
 		D7E1CE16218F0A120034B8E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		D7E1CE2B218F0A120034B8E6 /* CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7E1CE2F218F0A120034B8E6 /* CalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorUITests.swift; sourceTree = "<group>"; };
 		D7E1CE31218F0A120034B8E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7E1CE3D218F2D770034B8E6 /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
+		D7E1CE3F218F2D9C0034B8E6 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +104,14 @@
 			isa = PBXGroup;
 			children = (
 				D7E1CE0C218F0A120034B8E6 /* AppDelegate.swift */,
-				D7E1CE0E218F0A120034B8E6 /* ViewController.swift */,
+				D7E1CE0E218F0A120034B8E6 /* MainController.swift */,
 				D7E1CE10218F0A120034B8E6 /* Main.storyboard */,
+				D7E1CE3D218F2D770034B8E6 /* CalculatorView.swift */,
 				D7E1CE16218F0A120034B8E6 /* Assets.xcassets */,
 				D7E1CE18218F0A120034B8E6 /* LaunchScreen.storyboard */,
 				D7E1CE1B218F0A120034B8E6 /* Info.plist */,
 				D7E1CE13218F0A120034B8E6 /* Calculator.xcdatamodeld */,
+				D7E1CE3F218F2D9C0034B8E6 /* Calculator.swift */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -262,8 +268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7E1CE0F218F0A120034B8E6 /* ViewController.swift in Sources */,
+				D7E1CE3E218F2D770034B8E6 /* CalculatorView.swift in Sources */,
+				D7E1CE0F218F0A120034B8E6 /* MainController.swift in Sources */,
 				D7E1CE15218F0A120034B8E6 /* Calculator.xcdatamodeld in Sources */,
+				D7E1CE40218F2D9C0034B8E6 /* Calculator.swift in Sources */,
 				D7E1CE0D218F0A120034B8E6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,9 +508,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ajisaputrars.Calculator2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Calculator2;
+				TEST_TARGET_NAME = Calculator;
 			};
 			name = Debug;
 		};
@@ -516,9 +525,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ajisaputrars.Calculator2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Calculator2;
+				TEST_TARGET_NAME = Calculator;
 			};
 			name = Release;
 		};
