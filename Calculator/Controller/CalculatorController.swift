@@ -10,18 +10,28 @@ import UIKit
 
 class CalculatorController: UIViewController {
     
+    private var userIsInTheMiddleOfTyping = false
+    private var brain: Calculator!
+
+    private var displayValue: Double {
+        get {
+            return Double(mainView.displayLabel.text!)!
+        } set {
+            mainView.displayLabel.text = String(newValue)
+        }
+    }
+    
     private var mainView: CalculatorView! {
         guard isViewLoaded else { return nil }
         return view as! CalculatorView
     }
-    
-    var userIsInTheMiddleOfTyping = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        brain = Calculator()
     }
     
-    @IBAction func touchDigit(_ sender: UIButton) {
+    @IBAction private func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         if userIsInTheMiddleOfTyping {
             mainView.displayLabel.text = mainView.displayLabel.text! + digit
@@ -30,13 +40,16 @@ class CalculatorController: UIViewController {
         }
         userIsInTheMiddleOfTyping = true
     }
-    @IBAction func performOperation(_ sender: UIButton) {
-        if let sender = sender.currentTitle {
-            if sender == "𝜋" {
-                mainView.displayLabel.text = "\(Double.pi)"
-            }
+    @IBAction private func performOperation(_ sender: UIButton) {
+        if userIsInTheMiddleOfTyping {
+            brain.setOperand(operand: displayValue)
+            userIsInTheMiddleOfTyping = false
         }
-        userIsInTheMiddleOfTyping = false
+        
+        if let mathSymbol = sender.currentTitle {
+            brain.performOperation(symbol: mathSymbol)
+        }
+        displayValue = brain.result
     }
 }
 
