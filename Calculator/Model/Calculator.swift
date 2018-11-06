@@ -29,6 +29,9 @@ class Calculator{
         "√" : Operation.UnaryOperation(sqrt),
         "cos" : Operation.UnaryOperation(cos),//M_E
         "x" : Operation.BinaryOperation({$0 * $1}),
+        "+" : Operation.BinaryOperation({$0 + $1}),
+        "-" : Operation.BinaryOperation({$0 - $1}),
+        "÷" : Operation.BinaryOperation({$0 / $1}),
         "=" : Operation.Equals
     ]
     
