@@ -9,9 +9,11 @@
 import UIKit
 
 class CalculatorController: UIViewController {
+    private var brain: Calculator!
     
     private var userIsInTheMiddleOfTyping = false
-    private var brain: Calculator!
+    private var legalDigit = false
+    private var zeroAllowed =  true
 
     private var displayValue: Double {
         get {
@@ -34,11 +36,42 @@ class CalculatorController: UIViewController {
     @IBAction private func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         if userIsInTheMiddleOfTyping {
-            mainView.displayLabel.text = mainView.displayLabel.text! + digit
+            if digit == "." {
+                if legalDigit {
+                    mainView.displayLabel.text = mainView.displayLabel.text! + digit
+                    legalDigit = false
+                    zeroAllowed = true
+                }
+            } else if digit == "0" {
+                if zeroAllowed {
+                    mainView.displayLabel.text = mainView.displayLabel.text! + digit
+                }
+            } else {
+                mainView.displayLabel.text = mainView.displayLabel.text! + digit
+                zeroAllowed = true
+            }
         } else {
-            mainView.displayLabel.text = digit
+            if digit == "."{
+                if legalDigit {
+                    mainView.displayLabel.text = digit
+                    legalDigit = false
+                    userIsInTheMiddleOfTyping = true
+                }
+            } else if digit == "0" {
+                if zeroAllowed {
+                    mainView.displayLabel.text = digit
+                    zeroAllowed = false
+                    legalDigit = true
+                    userIsInTheMiddleOfTyping = true
+                }
+            }
+            else {
+                mainView.displayLabel.text = digit
+                legalDigit = true
+                zeroAllowed = true
+                userIsInTheMiddleOfTyping = true
+            }
         }
-        userIsInTheMiddleOfTyping = true
     }
     @IBAction private func performOperation(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping {
