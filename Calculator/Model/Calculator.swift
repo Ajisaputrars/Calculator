@@ -43,13 +43,18 @@ class Calculator{
             case .UnaryOperation(let function) :
                 accumulator = function(accumulator)
             case .BinaryOperation(let function) :
+                executePendingBinaryOperation()
                 pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
             case .Equals :
-                if pending != nil {
-                    accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
-                    pending = nil
-                }
+                executePendingBinaryOperation()
             }
+        }
+    }
+    
+    func executePendingBinaryOperation(){
+        if pending != nil {
+            accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
+            pending = nil
         }
     }
     
