@@ -16,7 +16,7 @@ class Calculator{
         accumulator = operand
     }
     
-    enum Operation {
+    private enum Operation {
         case Constant(Double)
         case UnaryOperation((Double) -> Double)
         case BinaryOperation((Double, Double) ->(Double))
@@ -24,7 +24,7 @@ class Calculator{
     }
     
     private var operation: Dictionary<String, Operation> = [
-        "𝜋" : Operation.Constant(.pi), // Double.pi,
+        "𝜋" : Operation.Constant(3.14), // Double.pi,
         "e" : Operation.Constant(M_E), //M_E
         "√" : Operation.UnaryOperation(sqrt),
         "cos" : Operation.UnaryOperation(cos),//M_E
@@ -51,21 +51,23 @@ class Calculator{
         }
     }
     
-    func executePendingBinaryOperation(){
+    private func executePendingBinaryOperation(){
         if pending != nil {
             accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
             pending = nil
         }
     }
     
-    var pending: PendingBinaryOperationInfo?
-    
-    struct PendingBinaryOperationInfo {
-        var binaryFunction: (Double, Double) -> Double
-        var firstOperand: Double
-    }
+    private var pending: PendingBinaryOperationInfo?
     
     var result: Double {
         return accumulator
+    }
+}
+
+extension Calculator {
+    struct PendingBinaryOperationInfo {
+        var binaryFunction: (Double, Double) -> Double
+        var firstOperand: Double
     }
 }
