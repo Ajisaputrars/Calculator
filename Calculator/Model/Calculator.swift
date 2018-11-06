@@ -8,10 +8,6 @@
 
 import Foundation
 
-func multiply(d1: Double, d2: Double) -> Double{
-    return d1 * d2
-}
-
 class Calculator{
     
     private var accumulator = 0.0
@@ -32,7 +28,7 @@ class Calculator{
         "e" : Operation.Constant(M_E), //M_E
         "√" : Operation.UnaryOperation(sqrt),
         "cos" : Operation.UnaryOperation(cos),//M_E
-        "x" : Operation.BinaryOperation(multiply),
+        "x" : Operation.BinaryOperation({$0 * $1}),
         "=" : Operation.Equals
     ]
     
