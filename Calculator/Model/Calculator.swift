@@ -11,11 +11,17 @@ import Foundation
 class Calculator{
     
     private var accumulator = 0.0
-    var description = ""
-    var isPartialResult = false
+    var description = [AnyObject]()
+    var isPartialResult: Bool {
+        if pending != nil {
+            return true
+        }
+        return false
+    }
     
     func setOperand(operand: Double){
         accumulator = operand
+        description.append(operand as AnyObject)
     }
     
     private enum Operation {
@@ -38,6 +44,7 @@ class Calculator{
     ]
     
     func performOperation(symbol: String){
+        description.append(symbol as AnyObject)
         if let operation = operation[symbol] {
             switch operation {
             case .Constant (let value) :
@@ -73,3 +80,5 @@ extension Calculator {
         var firstOperand: Double
     }
 }
+
+typealias PropertyList = AnyObject
