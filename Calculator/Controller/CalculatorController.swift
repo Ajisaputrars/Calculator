@@ -34,10 +34,15 @@ class CalculatorController: UIViewController {
     
     @IBAction private func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
+        
         if userIsInTheMiddleOfTyping {
             if mainView.displayLabel.text == "0" {
                 if digit != "0" {
-                    mainView.displayLabel.text = ""
+                    if digit == "." {
+                        mainView.displayLabel.text = mainView.displayLabel.text! + digit
+                    } else {
+                        mainView.displayLabel.text = ""
+                    }
                 }
             }
             
@@ -50,16 +55,19 @@ class CalculatorController: UIViewController {
                 if zeroAllowed {
                     mainView.displayLabel.text = mainView.displayLabel.text! + digit
                 }
-            }
-            else {
+            } else {
                 mainView.displayLabel.text = mainView.displayLabel.text! + digit
                 zeroAllowed = true
             }
 
         } else {
-            mainView.displayLabel.text = digit
-            if digit == "0" {
-                zeroAllowed = false
+            if digit == "." {
+                mainView.displayLabel.text = "0."
+            } else {
+                mainView.displayLabel.text = digit
+                if digit == "0" {
+                    zeroAllowed = false
+                }
             }
             userIsInTheMiddleOfTyping = true
         }
