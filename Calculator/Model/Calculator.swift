@@ -11,6 +11,7 @@ import Foundation
 class Calculator{
     
     private var accumulator = 0.0
+    var description = ""
     
     func setOperand(operand: Double){
         accumulator = operand
