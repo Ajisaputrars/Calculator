@@ -12,7 +12,6 @@ class CalculatorController: UIViewController {
     private var brain: Calculator!
     
     private var userIsInTheMiddleOfTyping = false
-    private var legalDigit = false
     private var zeroAllowed =  true
 
     private var displayValue: Double {
@@ -36,16 +35,32 @@ class CalculatorController: UIViewController {
     @IBAction private func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         if userIsInTheMiddleOfTyping {
+            if mainView.displayLabel.text == "0" {
+                if digit != "0" {
+                    mainView.displayLabel.text = ""
+                }
+            }
+            
             if digit == "." {
                 if mainView.displayLabel.text?.range(of: ".") == nil {
                     mainView.displayLabel.text = mainView.displayLabel.text! + digit
                 }
-            } else {
+                zeroAllowed = true
+            } else if digit == "0" {
+                if zeroAllowed {
+                    mainView.displayLabel.text = mainView.displayLabel.text! + digit
+                }
+            }
+            else {
                 mainView.displayLabel.text = mainView.displayLabel.text! + digit
+                zeroAllowed = true
             }
 
         } else {
             mainView.displayLabel.text = digit
+            if digit == "0" {
+                zeroAllowed = false
+            }
             userIsInTheMiddleOfTyping = true
         }
     }
