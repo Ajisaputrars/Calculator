@@ -12,6 +12,7 @@ class Calculator{
     
     private var accumulator = 0.0
     var description = ""
+    var isPartialResult = false
     
     func setOperand(operand: Double){
         accumulator = operand
