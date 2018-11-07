@@ -37,40 +37,16 @@ class CalculatorController: UIViewController {
         let digit = sender.currentTitle!
         if userIsInTheMiddleOfTyping {
             if digit == "." {
-                if legalDigit {
-                    mainView.displayLabel.text = mainView.displayLabel.text! + digit
-                    legalDigit = false
-                    zeroAllowed = true
-                }
-            } else if digit == "0" {
-                if zeroAllowed {
+                if mainView.displayLabel.text?.range(of: ".") == nil {
                     mainView.displayLabel.text = mainView.displayLabel.text! + digit
                 }
             } else {
                 mainView.displayLabel.text = mainView.displayLabel.text! + digit
-                zeroAllowed = true
             }
+
         } else {
-            if digit == "."{
-                if legalDigit {
-                    mainView.displayLabel.text = digit
-                    legalDigit = false
-                    userIsInTheMiddleOfTyping = true
-                }
-            } else if digit == "0" {
-                if zeroAllowed {
-                    mainView.displayLabel.text = digit
-                    zeroAllowed = false
-                    legalDigit = true
-                    userIsInTheMiddleOfTyping = true
-                }
-            }
-            else {
-                mainView.displayLabel.text = digit
-                legalDigit = true
-                zeroAllowed = true
-                userIsInTheMiddleOfTyping = true
-            }
+            mainView.displayLabel.text = digit
+            userIsInTheMiddleOfTyping = true
         }
     }
     @IBAction private func performOperation(_ sender: UIButton) {
