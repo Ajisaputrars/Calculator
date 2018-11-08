@@ -21,6 +21,9 @@ class Calculator{
     }
     
     func setOperand(operand: Double){
+        if lastOperation == .UnaryOperation {
+            description.removeAll()
+        }
         accumulator = operand
         description.append(operand as AnyObject)
     }
@@ -65,10 +68,13 @@ class Calculator{
                 lastOperation = .Constant
             case .UnaryOperation(let function) :
                 accumulator = function(accumulator)
-                let index = description.count - 1
-                description.insert(symbol as AnyObject, at: index)
+                createParen(symbol: symbol)
+                
                 lastOperation = .UnaryOperation
             case .BinaryOperation(let function) :
+                if lastOperation == .Equals {
+                    description.removeLast()
+                }
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
                 description.append(symbol as AnyObject)
@@ -78,7 +84,7 @@ class Calculator{
                 description.append(symbol as AnyObject)
                 lastOperation = .Equals
             case .Clear :
-                break
+                lastOperation = .Clear
             }
         }
     }
@@ -87,6 +93,18 @@ class Calculator{
         if pending != nil {
             accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
             pending = nil
+        }
+    }
+    
+    private func createParen(symbol: String){
+        if lastOperation == .Equals {
+            description.insert(")" as AnyObject, at: description.count - 1)
+            description.insert(symbol as AnyObject, at: 0)
+            description.insert("(" as AnyObject, at: 1)
+        } else {
+            description.insert(symbol as AnyObject, at: description.count - 1)
+            description.insert("(" as AnyObject, at: description.count - 1)
+            description.insert(")" as AnyObject, at: description.count)
         }
     }
     
