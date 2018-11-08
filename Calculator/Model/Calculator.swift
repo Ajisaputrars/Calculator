@@ -44,18 +44,22 @@ class Calculator{
     ]
     
     func performOperation(symbol: String){
-        description.append(symbol as AnyObject)
         if let operation = operation[symbol] {
             switch operation {
             case .Constant (let value) :
                 accumulator = value
+                description.append(symbol as AnyObject)
             case .UnaryOperation(let function) :
                 accumulator = function(accumulator)
+                let index = description.count - 1
+                description.insert(symbol as AnyObject, at: index)
             case .BinaryOperation(let function) :
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
+                description.append(symbol as AnyObject)
             case .Equals :
                 executePendingBinaryOperation()
+                description.append(symbol as AnyObject)
             }
         }
     }

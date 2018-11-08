@@ -82,6 +82,12 @@ class CalculatorController: UIViewController {
             brain.performOperation(symbol: mathSymbol)
         }
         displayValue = brain.result
+        
+        print("Jumlah array adalah = \(brain.description.count)")
+        for i in brain.description {
+            print(i)
+        }
+        print("")
     }
 }
 
