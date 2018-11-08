@@ -11,6 +11,7 @@ import Foundation
 class Calculator{
     
     private var accumulator = 0.0
+    private var lastOperation :LastOperation = .Clear
     var description = [AnyObject]()
     var isPartialResult: Bool {
         if pending != nil {
@@ -29,7 +30,18 @@ class Calculator{
         case UnaryOperation((Double) -> Double)
         case BinaryOperation((Double, Double) ->(Double))
         case Equals
+        case Clear
     }
+    
+    private enum LastOperation {
+        case Digit
+        case Constant
+        case UnaryOperation
+        case BinaryOperation
+        case Equals
+        case Clear
+    }
+
     
     private var operation: Dictionary<String, Operation> = [
         "𝜋" : Operation.Constant(3.14), // Double.pi,
@@ -40,6 +52,7 @@ class Calculator{
         "+" : Operation.BinaryOperation({$0 + $1}),
         "-" : Operation.BinaryOperation({$0 - $1}),
         "÷" : Operation.BinaryOperation({$0 / $1}),
+        "c" : Operation.Clear,
         "=" : Operation.Equals
     ]
     
@@ -49,17 +62,23 @@ class Calculator{
             case .Constant (let value) :
                 accumulator = value
                 description.append(symbol as AnyObject)
+                lastOperation = .Constant
             case .UnaryOperation(let function) :
                 accumulator = function(accumulator)
                 let index = description.count - 1
                 description.insert(symbol as AnyObject, at: index)
+                lastOperation = .UnaryOperation
             case .BinaryOperation(let function) :
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
                 description.append(symbol as AnyObject)
+                lastOperation = .BinaryOperation
             case .Equals :
                 executePendingBinaryOperation()
                 description.append(symbol as AnyObject)
+                lastOperation = .Equals
+            case .Clear :
+                break
             }
         }
     }
@@ -75,6 +94,13 @@ class Calculator{
     
     var result: Double {
         return accumulator
+    }
+    
+    private func clear() {
+        accumulator = 0
+        pending = nil
+        description.removeAll()
+        lastOperation = .Clear
     }
 }
 
