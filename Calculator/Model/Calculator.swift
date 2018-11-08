@@ -84,6 +84,7 @@ class Calculator{
                 description.append(symbol as AnyObject)
                 lastOperation = .Equals
             case .Clear :
+                clear()
                 lastOperation = .Clear
             }
         }
