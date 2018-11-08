@@ -30,6 +30,8 @@ class CalculatorController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         brain = Calculator()
+        
+        mainView.displayLabel2.text = ""
     }
     
     @IBAction private func touchDigit(_ sender: UIButton) {
@@ -83,11 +85,10 @@ class CalculatorController: UIViewController {
         }
         displayValue = brain.result
         
-        print("Jumlah array adalah = \(brain.description.count)")
+        mainView.displayLabel2.text = ""
         for i in brain.description {
-            print(i)
+            mainView.displayLabel2.text = mainView.displayLabel2.text! + "\(i)"
         }
-        print("")
     }
 }
 

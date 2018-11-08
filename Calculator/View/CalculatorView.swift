@@ -10,4 +10,5 @@ import UIKit
 
 class CalculatorView: UIView {
     @IBOutlet weak var displayLabel: UILabel!
+    @IBOutlet weak var displayLabel2: UILabel!
 }

@@ -238,6 +238,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
                             <outlet property="displayLabel" destination="XIm-N5-qt7" id="GVT-Nd-Erg"/>
+                            <outlet property="displayLabel2" destination="Zei-D7-3Aq" id="diy-Pb-0fv"/>
                         </connections>
                     </view>
                 </viewController>
