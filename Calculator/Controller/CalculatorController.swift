@@ -88,8 +88,12 @@ class CalculatorController: UIViewController {
         print("Ada partial result? = \(brain.isPartialResult)")
         
         mainView.displayLabel2.text = ""
+        
         for i in brain.description {
             mainView.displayLabel2.text = mainView.displayLabel2.text! + "\(i)"
+        }
+        if brain.isPartialResult {
+            mainView.displayLabel2.text = mainView.displayLabel2.text! + "..."
         }
     }
 }
