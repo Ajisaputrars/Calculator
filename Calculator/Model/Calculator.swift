@@ -12,7 +12,11 @@ class Calculator{
     
     private var accumulator = 0.0
     private var lastOperation :LastOperation = .Clear
-    var description = [AnyObject]()
+    private var _description = [AnyObject]()
+    
+    var description: [AnyObject] {
+        return _description
+    }
     var isPartialResult: Bool {
         if pending != nil {
             return true
@@ -22,10 +26,10 @@ class Calculator{
     
     func setOperand(operand: Double){
         if lastOperation == .UnaryOperation {
-            description.removeAll()
+            _description.removeAll()
         }
         accumulator = operand
-        description.append(operand as AnyObject)
+        _description.append(operand as AnyObject)
         lastOperation = .Digit
     }
     
@@ -65,7 +69,7 @@ class Calculator{
             switch operation {
             case .Constant (let value) :
                 accumulator = value
-                description.append(symbol as AnyObject)
+                _description.append(symbol as AnyObject)
                 lastOperation = .Constant
             case .UnaryOperation(let function) :
                 accumulator = function(accumulator)
@@ -74,7 +78,7 @@ class Calculator{
                 lastOperation = .UnaryOperation
             case .BinaryOperation(let function) :
                 if lastOperation == .Equals || lastOperation == .BinaryOperation {
-                    description.removeLast()
+                    _description.removeLast()
                 }
                 
                 if lastOperation != .BinaryOperation {
@@ -82,14 +86,14 @@ class Calculator{
                 }
                 
                 pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
-                description.append(symbol as AnyObject)
+                _description.append(symbol as AnyObject)
                 lastOperation = .BinaryOperation
             case .Equals :
                 executePendingBinaryOperation()
                 if lastOperation == .BinaryOperation {
                     
                 }
-                description.append(symbol as AnyObject)
+                _description.append(symbol as AnyObject)
                 lastOperation = .Equals
             case .Clear :
                 clear()
@@ -107,13 +111,13 @@ class Calculator{
     
     private func createParen(symbol: String){
         if lastOperation == .Equals {
-            description.insert(")" as AnyObject, at: description.count - 1)
-            description.insert(symbol as AnyObject, at: 0)
-            description.insert("(" as AnyObject, at: 1)
+            _description.insert(")" as AnyObject, at: _description.count - 1)
+            _description.insert(symbol as AnyObject, at: 0)
+            _description.insert("(" as AnyObject, at: 1)
         } else {
-            description.insert(symbol as AnyObject, at: description.count - 1)
-            description.insert("(" as AnyObject, at: description.count - 1)
-            description.insert(")" as AnyObject, at: description.count)
+            _description.insert(symbol as AnyObject, at: _description.count - 1)
+            _description.insert("(" as AnyObject, at: _description.count - 1)
+            _description.insert(")" as AnyObject, at: _description.count)
         }
     }
     
@@ -126,7 +130,7 @@ class Calculator{
     private func clear() {
         accumulator = 0
         pending = nil
-        description.removeAll()
+        _description.removeAll()
         lastOperation = .Clear
     }
 }
