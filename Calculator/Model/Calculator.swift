@@ -26,6 +26,7 @@ class Calculator{
         }
         accumulator = operand
         description.append(operand as AnyObject)
+        lastOperation = .Digit
     }
     
     private enum Operation {
@@ -72,15 +73,22 @@ class Calculator{
                 
                 lastOperation = .UnaryOperation
             case .BinaryOperation(let function) :
-                if lastOperation == .Equals {
+                if lastOperation == .Equals || lastOperation == .BinaryOperation {
                     description.removeLast()
                 }
-                executePendingBinaryOperation()
+                
+                if lastOperation != .BinaryOperation {
+                    executePendingBinaryOperation()
+                }
+                
                 pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
                 description.append(symbol as AnyObject)
                 lastOperation = .BinaryOperation
             case .Equals :
                 executePendingBinaryOperation()
+                if lastOperation == .BinaryOperation {
+                    
+                }
                 description.append(symbol as AnyObject)
                 lastOperation = .Equals
             case .Clear :
