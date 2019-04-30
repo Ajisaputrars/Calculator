@@ -26,4 +26,4 @@ This project is licensed under the GNU General Public License v3.0 - see the [**
 Copyright © 2018 **Aji Saputra Raka Siwi**
 
 [1]:	https://github.com/Ajisaputrars
-[2]:	https://github.com/Ajisaputrars/Project-Popular-Movies-App-iOS/blob/master/LICENSE
+[2]:	https://github.com/Ajisaputrars/Calculator/blob/master/LICENSE
