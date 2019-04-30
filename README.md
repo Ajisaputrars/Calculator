@@ -7,7 +7,7 @@ This app has several features:
 - It works like a traditional calculator.
 - Support constant, unary, and binary opreation.
 - Display the history or description about current operation.
-- Comfort with traditional Model - View - Controller design pattern.
+- Comply with traditional Model - View - Controller design pattern.
 - Created using Test-Driven development methodology.
 
 <p align="center">
