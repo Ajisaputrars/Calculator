@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Dalil" representedClassName="Dalil" syncable="YES" codeGenerationType="class">
+        <attribute name="ahliWaris" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bagian" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dalil" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dalilLengkap" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sumberDalil" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="syarat" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Dalil" positionX="-162" positionY="-18" width="227" height="148"/>
+    </elements>
 </model>

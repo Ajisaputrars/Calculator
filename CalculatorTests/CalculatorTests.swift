@@ -27,5 +27,70 @@ class CalculatorTests: XCTestCase {
         super.tearDown()
     }
     
+    func testAddition() {
+        brain.setOperand(operand: 7)
+        brain.performOperation(symbol: "+")
+        brain.setOperand(operand: 5)
+        brain.performOperation(symbol: "=")
+        
+        XCTAssertEqual(brain.result, 12)
+    }
     
+    func testSubstraction() {
+        brain.setOperand(operand: 7)
+        brain.performOperation(symbol: "-")
+        brain.setOperand(operand: 5)
+        brain.performOperation(symbol: "=")
+        
+        XCTAssertEqual(brain.result, 2)
+    }
+    
+    func testMultiplication() {
+        brain.setOperand(operand: 7)
+        brain.performOperation(symbol: "x")
+        brain.setOperand(operand: 5)
+        brain.performOperation(symbol: "=")
+        
+        XCTAssertEqual(brain.result, 35)
+    }
+    
+    func testDivide() {
+        brain.setOperand(operand: 10)
+        brain.performOperation(symbol: "÷")
+        brain.setOperand(operand: 2)
+        brain.performOperation(symbol: "=")
+        
+        XCTAssertEqual(brain.result, 5)
+    }
+    
+    func testCosine() {
+        brain.setOperand(operand: 30)
+        brain.performOperation(symbol: "cos")
+        
+        XCTAssertEqual(brain.result, cos(30))
+    }
+    
+    func testPhi() {
+        brain.performOperation(symbol: "𝜋")
+        
+        XCTAssertEqual(brain.result, 3.14)
+    }
+    
+    func testSqrt() {
+        brain.setOperand(operand: 25)
+        brain.performOperation(symbol: "√")
+        
+        XCTAssertEqual(brain.result, 5)
+    }
+    
+    func testAddAndSubstract(){
+        brain.setOperand(operand: 10)
+        brain.performOperation(symbol: "+")
+        brain.setOperand(operand: 5)
+        brain.performOperation(symbol: "-")
+        brain.setOperand(operand: 3)
+        brain.performOperation(symbol: "=")
+        
+        XCTAssertEqual(brain.result, 12)
+    }
 }

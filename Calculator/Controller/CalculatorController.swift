@@ -22,16 +22,17 @@ class CalculatorController: UIViewController {
         }
     }
     
-    private var mainView: CalculatorView! {
-        guard isViewLoaded else { return nil }
-        return view as! CalculatorView
-    }
+    private var mainView: CalculatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView = view as! CalculatorView
+        
         brain = Calculator()
         
         mainView.displayLabel2.text = ""
+        
+        testingS()
     }
     
     @IBAction private func touchDigit(_ sender: UIButton) {
@@ -101,5 +102,27 @@ class CalculatorController: UIViewController {
 extension CalculatorController{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func testingS(){
+        let cube = 27.0
+        let epsilon = 0.01
+        var guess = 0.0
+        let increment = 0.01
+        var numGuesses = 0
+        
+        while abs((guess*guess*guess) - cube) >= epsilon && guess <= cube {
+            let a = abs((guess*guess*guess) - cube)
+            print(a)
+            guess += increment
+            numGuesses += 1
+        }
+        print("Numb Guesses = \(numGuesses)")
+        
+        if abs((guess*guess*guess) - cube) >= epsilon {
+            print("Failed to find a cube root of \(cube)")
+        } else {
+            print("\(guess) is close enough the root cube of \(cube)")
+        }
     }
 }
